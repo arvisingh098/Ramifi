@@ -1,0 +1,33 @@
+{
+  "name": "tutorialtoken",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "dev": "lite-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@openzeppelin/test-environment": "^0.1.4",
+    "@openzeppelin/test-helpers": "^0.5.4",
+    "@truffle/hdwallet-provider": "^1.2.3",
+    "@typechain/ethers-v4": "^3.0.1",
+    "chai": "^4.2.0",
+    "dotenv": "^8.2.0",
+    "eth-sig-util": "^2.5.3",
+    "husky": "^4.2.5",
+    "mocha": "^7.0.0",
+    "truffle": "^5.2.6",
+    "truffle-plugin-verify": "^0.4.0",
+    "truffle-privatekey-provider": "^1.3.0",
+    "typechain": "^4.0.0",
+    "web3": "^1.3.0",
+    "ws": "^7.4.0"
+  },
+  "dependencies": {
+    "chainlink": "^0.7.8",
+    "@openzeppelin/contracts": "^3.1.0",
+    "@chainlink/contracts": "0.1.6"
+  }
+}

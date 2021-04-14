@@ -1,2 +1,0 @@
-# Ramifi
-Rimifi Staking Project
