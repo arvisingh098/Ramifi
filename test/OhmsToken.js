@@ -1,6 +1,6 @@
-const OmsToken = artifacts.require("Oms");
+const OmsToken = artifacts.require("Ramifi");
 
-contract('OmsToken', (accounts) => {
+contract('Ramifi', (accounts) => {
     it('should start with a total supply of 50,000,000,000,000,000', async () => {
         let omsTokenInstance = await OmsToken.deployed();
         let totalSupply = await omsTokenInstance.totalSupply();
