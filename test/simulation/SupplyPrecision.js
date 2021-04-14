@@ -10,7 +10,7 @@
 */
 
 const expect = require('chai').expect;
-const OmsToken = artifacts.require('Oms');
+const RamifiToken = artifacts.require('Ramifi');
 const _require = require('app-root-path').require;
 const BlockchainCaller = _require('/util/BlockchainCaller');
 const chain = new BlockchainCaller(web3);
@@ -20,27 +20,27 @@ const BN = web3.utils.BN;
 //const endSupply = new BN(2).pow(128).minus(1);
 const endSupply = new BN(5);
 
-let omsToken, preRebaseSupply, postRebaseSupply;
+let RamifiToken, preRebaseSupply, postRebaseSupply;
 preRebaseSupply = new BN(0);
 postRebaseSupply = new BN(0);
 
 async function exec () {
   const accounts = await chain.getUserAccounts();
   const deployer = accounts[0];
-  omsToken = await OmsToken.new();
-  await omsToken.sendTransaction({
+  RamifiToken = await RamifiToken.new();
+  await RamifiToken.sendTransaction({
     data: encodeCall('initialize', ['address'], [deployer]),
     from: deployer
   });
-  await omsToken.setMonetaryPolicy(deployer, {from: deployer});
+  await RamifiToken.setMonetaryPolicy(deployer, {from: deployer});
 
   let i = 0;
   do {
     console.log('Iteration', i + 1);
 
-    preRebaseSupply = await omsToken.totalSupply.call();
-    await omsToken.rebase(2 * i, 1, {from: deployer});
-    postRebaseSupply = await omsToken.totalSupply.call();
+    preRebaseSupply = await RamifiToken.totalSupply.call();
+    await RamifiToken.rebase(2 * i, 1, {from: deployer});
+    postRebaseSupply = await RamifiToken.totalSupply.call();
     console.log('Rebased by 1 AMPL');
     console.log('Total supply is now', postRebaseSupply.toString(), 'AMPL');
 
@@ -48,9 +48,9 @@ async function exec () {
     expect(postRebaseSupply.minus(preRebaseSupply).toNumber()).to.eq(1);
 
     console.log('Doubling supply');
-    await omsToken.rebase(2 * i + 1, postRebaseSupply, {from: deployer});
+    await RamifiToken.rebase(2 * i + 1, postRebaseSupply, {from: deployer});
     i++;
-  } while ((await omsToken.totalSupply.call()).lt(endSupply));
+  } while ((await RamifiToken.totalSupply.call()).lt(endSupply));
 }
 
 module.exports = function (done) {
