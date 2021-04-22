@@ -2,7 +2,7 @@
 
 pragma solidity ^0.6.0;
 
-import "@openzeppelin/contracts/access/Ownable.sol";
+import "./common/Ownable.sol";
 import "./AdminUpgradeabilityProxy.sol";
 
 /**
